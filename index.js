@@ -1,29 +1,14 @@
-var urlIP = "https://api.ipify.org/"
-var urlCity = "http://www.geoplugin.net/json.gp"
+var url = "https://geolocation-db.com/json/"
 
 var ipItem = document.getElementById("ip")
 var cityCountryItem = document.getElementById("country-city")
 
-function getCityCountry(ip){
-    let url = `${urlCity}?ip=${ip}`
-
+document.addEventListener("DOMContentLoaded", function(){
     fetch(url)
     .then(res => res.json())
     .then(json => {
-        cityCountryItem.innerHTML = `${json.geoplugin_city}, ${json.geoplugin_countryName}`
+        document.title = json.IPv4
+        ipItem.innerHTML = json.IPv4
+        cityCountryItem.innerHTML = `${json.country_name}, ${json.city}`
     })
-}
-
-function getIP(){
-    fetch(urlIP)
-    .then(res => res.text())
-    .then(text => {
-        document.title = text
-        ipItem.innerHTML = text
-        getCityCountry(text)
-    })
-}
-
-document.addEventListener("DOMContentLoaded", function(){
-    getIP()
 })
