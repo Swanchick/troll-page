@@ -7,8 +7,6 @@ var cityCountryItem = document.getElementById("country-city")
 function getCityCountry(ip){
     let url = `${urlCity}?ip=${ip}`
 
-    console.log(url)
-
     fetch(url)
     .then(res => res.json())
     .then(json => {
